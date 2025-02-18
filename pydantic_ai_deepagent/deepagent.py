@@ -1,6 +1,6 @@
 from collections.abc import AsyncIterator
 
-from pydantic_ai import result
+from pydantic_ai import result, usage
 from pydantic_ai.messages import (
     ModelMessage,
     ModelRequest,
@@ -42,9 +42,39 @@ class DeepAgentModel(Model):
         messages: list[ModelMessage],
         model_settings: ModelSettings | None,
         model_request_parameters: ModelRequestParameters,
-    ) -> tuple[ModelResponse, result.Usage]:
+    ) -> tuple[ModelResponse, usage.Usage]:
         """Make a request to the model."""
-        raise NotImplementedError()
+        reasoning_response, reasoning_usage = await self.reasoning_model.request(
+            messages, model_settings, model_request_parameters
+        )
+
+        messages.append(reasoning_response)
+        messages.append(
+            ModelRequest(
+                parts=[
+                    UserPromptPart(
+                        content="Please use a tool accroding the reasoning result.",
+                    )
+                ]
+            )
+        )
+
+        execution_response, execution_usage = await self.execution_model.request(
+            messages, model_settings, model_request_parameters
+        )
+
+        total_usage = reasoning_usage + execution_usage
+        total_usage.details = {
+            **(total_usage.details or {}),
+            "reasoning_request_tokens": reasoning_usage.request_tokens,
+            "reasoning_response_tokens": reasoning_usage.response_tokens,
+            "reasoning_total_tokens": reasoning_usage.total_tokens,
+            "execution_request_tokens": execution_usage.request_tokens,
+            "execution_response_tokens": execution_usage.response_tokens,
+            "execution_total_tokens": execution_usage.total_tokens,
+        }
+
+        return (execution_response, total_usage)
 
     async def request_stream(
         self,
