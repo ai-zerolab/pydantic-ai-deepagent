@@ -568,4 +568,4 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-.github/tmp/*
+.github/.tmp/*
