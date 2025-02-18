@@ -7,6 +7,10 @@
 
 # pydantic-ai-deepagent
 
+This is a pydantic model to implement [reasoning response](https://github.com/pydantic/pydantic-ai/issues/907) with tool use.
+
+⚠️ This is not a official project of PydanticAI, And PydanticAI is in early beta, the API is still subject to change and there's a lot more to do. Feedback is very welcome!
+
 ## Install
 
 `pip install pydantic_ai_deepagent`
