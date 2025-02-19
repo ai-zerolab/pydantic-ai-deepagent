@@ -7,9 +7,14 @@
 
 # pydantic-ai-deepagent
 
-This is a pydantic model to implement [reasoning response](https://github.com/pydantic/pydantic-ai/issues/907) with tool use.
+[pydantic-ai](https://github.com/pydantic/pydantic-ai)'s model to implement [deepclaude](https://github.com/getAsterisk/deepclaude)-style-agent. Making models such as claude can use deepseek r1's thinking as a reference for tool use. Check the [example](./examples/greater.py).
 
 ⚠️ This is not a official project of PydanticAI, And PydanticAI is in early beta, the API is still subject to change and there's a lot more to do. Feedback is very welcome!
+
+## WIP
+
+- [ ] Implement StreamResponse
+- [ ] Add tests
 
 ## Install
 
