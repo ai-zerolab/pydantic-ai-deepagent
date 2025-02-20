@@ -1,8 +1,7 @@
 ![](https://img.shields.io/github/license/wh1isper/pydantic-ai-deepagent)
 ![](https://img.shields.io/github/v/release/wh1isper/pydantic-ai-deepagent)
-![](https://img.shields.io/docker/image-size/wh1isper/pydantic-ai-deepagent)
 ![](https://img.shields.io/pypi/dm/pydantic_ai_deepagent)
-![](https://img.shields.io/github/last-commit/wh1isper/pydantic_ai_deepagent)
+![](https://img.shields.io/github/last-commit/wh1isper/pydantic-ai-deepagent)
 ![](https://img.shields.io/pypi/pyversions/pydantic_ai_deepagent)
 
 # pydantic-ai-deepagent
