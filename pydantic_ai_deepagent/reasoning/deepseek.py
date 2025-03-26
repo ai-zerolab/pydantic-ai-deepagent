@@ -103,7 +103,9 @@ class DeepseekReasoningModel(Model):
         self.system_prompt = system_prompt or self.get_default_system_prompt()
 
         self.client = AsyncOpenAI(
-            base_url=self._base_url, api_key=api_key, http_client=cached_async_http_client()  # Use the private attribute
+            base_url=self._base_url,
+            api_key=api_key,
+            http_client=cached_async_http_client(),  # Use the private attribute
         )
         self.system_prompt_role = system_prompt_role
 
