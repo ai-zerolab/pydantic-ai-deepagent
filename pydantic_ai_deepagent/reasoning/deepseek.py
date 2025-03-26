@@ -99,11 +99,11 @@ class DeepseekReasoningModel(Model):
     ):
         self._model_name = model_name
         self.api_key = api_key
-        self.base_url = base_url
+        self._base_url = base_url  # Store base_url in a private attribute
         self.system_prompt = system_prompt or self.get_default_system_prompt()
 
         self.client = AsyncOpenAI(
-            base_url=base_url, api_key=api_key, http_client=cached_async_http_client()
+            base_url=self._base_url, api_key=api_key, http_client=cached_async_http_client()  # Use the private attribute
         )
         self.system_prompt_role = system_prompt_role
 
